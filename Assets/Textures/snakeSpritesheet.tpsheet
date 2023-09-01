@@ -1,0 +1,19 @@
+#
+# Sprite sheet data for Unity.
+#
+# To import these sprites into your Unity project, download "TexturePackerImporter":
+# https://www.codeandweb.com/texturepacker/unity
+#
+# $TexturePacker:SmartUpdate:7f719941c90dcde8a4b43f2c4cd3a779:1dafdfaf5cf07b904a990554cc240458:4e11ee6924b530a53ccd68458d052526$
+#
+:format=40300
+:texture=snakeSpritesheet.png
+:size=512x256
+:pivotpoints=enabled
+:borders=disabled
+:alphahandling=ClearTransparentPixels
+
+FoodApple;336;82;170;174; 0.49411764705882355;0.5172413793103448; 0;0;0;0
+SnakeBody;175;64;161;192; 0.4968944099378882;0.5416666666666667; 0;0;0;0
+SnakeHead;0;64;175;192; 0.5028571428571429;0.5416666666666667; 0;0;0;0
+White_1x1;0;63;1;1; 0.5;0.5; 0;0;0;0
