@@ -10,8 +10,6 @@
     --------------------------------------------------
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
@@ -24,11 +22,17 @@ public static class SoundManager {
         ButtonClick,
         ButtonOver,
     }
-
+    
     public static void PlaySound(Sound sound) {
-        GameObject soundGameObject = new GameObject("Sound");
-        AudioSource audioSource = soundGameObject.AddComponent<AudioSource>();
-        audioSource.PlayOneShot(GetAudioClip(sound));
+        var audioObj = PoolManager.instance.GetPoolObject(ObjectPoolType.Audio);
+
+        if (audioObj != null) {
+            AudioSource audioSource = audioObj.GetComponent<AudioSource>();
+            if (audioSource != null) {
+                audioObj.SetActive(true);
+                audioSource.PlayOneShot(GetAudioClip(sound));
+            }
+        }
     }
 
     private static AudioClip GetAudioClip(Sound sound) {
