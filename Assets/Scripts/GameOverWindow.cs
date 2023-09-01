@@ -10,8 +10,6 @@
     --------------------------------------------------
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
@@ -20,10 +18,15 @@ public class GameOverWindow : MonoBehaviour {
 
     private static GameOverWindow instance;
 
+    [SerializeField] private Button_UI retryBtn;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text highscoreText;
+    [SerializeField] private Text newHighscoreText;
+
     private void Awake() {
         instance = this;
 
-        transform.Find("retryBtn").GetComponent<Button_UI>().ClickFunc = () => { 
+        retryBtn.ClickFunc = () => { 
             Loader.Load(Loader.Scene.GameScene);
         };
 
@@ -33,10 +36,10 @@ public class GameOverWindow : MonoBehaviour {
     private void Show(bool isNewHighscore) {
         gameObject.SetActive(true);
 
-        transform.Find("newHighscoreText").gameObject.SetActive(isNewHighscore);
+        newHighscoreText.gameObject.SetActive(isNewHighscore);
 
-        transform.Find("scoreText").GetComponent<Text>().text = Score.GetScore().ToString();
-        transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE " + Score.GetHighscore();
+        scoreText.text = Score.GetScore().ToString();
+        highscoreText.text = "HIGHSCORE " + Score.GetHighscore();
     }
 
     private void Hide() {

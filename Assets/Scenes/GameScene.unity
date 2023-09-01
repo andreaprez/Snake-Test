@@ -638,6 +638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3c364be407151428bf9822a576a0de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 2141951959}
+  highscoreText: {fileID: 1483782802}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1019,6 +1021,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2397e071273d443a98d1148a75d4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resumeBtn: {fileID: 1888780374}
+  mainMenuBtn: {fileID: 450021494}
 --- !u!1 &970789902
 GameObject:
   m_ObjectHideFlags: 0
@@ -1116,6 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecfc34c1e2cad5940b5fdb55554f1850, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyPartPrefab: {fileID: 6182777526096681313, guid: 499d9a7453a73464dae58d66c4081f09, type: 3}
 --- !u!1 &976504660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,6 +1512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2b0f3f26204a07429a607cef9cb4032, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  retryBtn: {fileID: 68468680}
+  scoreText: {fileID: 1286561070}
+  highscoreText: {fileID: 1994274922}
+  newHighscoreText: {fileID: 695850045}
 --- !u!1 &1286561068
 GameObject:
   m_ObjectHideFlags: 0

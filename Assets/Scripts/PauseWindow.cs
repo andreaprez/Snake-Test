@@ -10,8 +10,6 @@
     --------------------------------------------------
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.Utils;
 
@@ -19,17 +17,20 @@ public class PauseWindow : MonoBehaviour {
 
     private static PauseWindow instance;
 
+    [SerializeField] private Button_UI resumeBtn;
+    [SerializeField] private Button_UI mainMenuBtn;
+
     private void Awake() {
         instance = this;
 
         transform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
         transform.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
 
-        transform.Find("resumeBtn").GetComponent<Button_UI>().ClickFunc = () => GameHandler.ResumeGame();
-        transform.Find("resumeBtn").GetComponent<Button_UI>().AddButtonSounds();
+        resumeBtn.ClickFunc = () => GameHandler.ResumeGame();
+        resumeBtn.AddButtonSounds();
 
-        transform.Find("mainMenuBtn").GetComponent<Button_UI>().ClickFunc = () => Loader.Load(Loader.Scene.MainMenu);
-        transform.Find("mainMenuBtn").GetComponent<Button_UI>().AddButtonSounds();
+        mainMenuBtn.ClickFunc = () => Loader.Load(Loader.Scene.MainMenu);
+        mainMenuBtn.AddButtonSounds();
 
         Hide();
     }
