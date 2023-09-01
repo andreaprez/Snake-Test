@@ -10,8 +10,6 @@
     --------------------------------------------------
  */
 
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,11 +17,11 @@ public class ScoreWindow : MonoBehaviour {
 
     private static ScoreWindow instance;
 
-    private Text scoreText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text highscoreText;
 
     private void Awake() {
         instance = this;
-        scoreText = transform.Find("scoreText").GetComponent<Text>();
     }
 
     private void Start() {
@@ -41,7 +39,7 @@ public class ScoreWindow : MonoBehaviour {
 
     private void UpdateHighscore() {
         int highscore = Score.GetHighscore();
-        transform.Find("highscoreText").GetComponent<Text>().text = "HIGHSCORE\n" + highscore.ToString();
+        highscoreText.text = "HIGHSCORE\n" + highscore.ToString();
     }
 
     public static void HideStatic() {

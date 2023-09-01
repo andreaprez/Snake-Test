@@ -10,11 +10,8 @@
     --------------------------------------------------
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey;
-using CodeMonkey.Utils;
 
 public class Snake : MonoBehaviour {
 
@@ -39,6 +36,8 @@ public class Snake : MonoBehaviour {
     private int snakeBodySize;
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
+
+    [SerializeField] private SpriteRenderer bodyPartPrefab;
 
     public void Setup(LevelGrid levelGrid) {
         this.levelGrid = levelGrid;
@@ -151,7 +150,7 @@ public class Snake : MonoBehaviour {
     }
 
     private void CreateSnakeBodyPart() {
-        snakeBodyPartList.Add(new SnakeBodyPart());
+        snakeBodyPartList.Add(new SnakeBodyPart(bodyPartPrefab));
     }
 
     private void UpdateSnakeBodyParts() {
@@ -191,11 +190,11 @@ public class Snake : MonoBehaviour {
         private SnakeMovePosition snakeMovePosition;
         private Transform transform;
 
-        public SnakeBodyPart() {
-            GameObject snakeBodyGameObject = new GameObject("SnakeBody", typeof(SpriteRenderer));
-            snakeBodyGameObject.GetComponent<SpriteRenderer>().sprite = GameAssets.i.snakeBodySprite;
-            snakeBodyGameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-            transform = snakeBodyGameObject.transform;
+        public SnakeBodyPart(SpriteRenderer prefab)
+        {
+            SpriteRenderer instance = Instantiate(prefab);
+            instance.sortingOrder = 1;
+            transform = instance.gameObject.transform;
         }
 
         public void SetSnakeMovePosition(SnakeMovePosition snakeMovePosition) {

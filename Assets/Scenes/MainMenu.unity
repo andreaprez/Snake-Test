@@ -1141,6 +1141,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce53bc76964547047b1748334f7d5462, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  howToPlaySub: {fileID: 2061281492}
+  mainSub: {fileID: 2028772594}
+  playBtn: {fileID: 2043860424}
+  quitBtn: {fileID: 1858466079}
+  howToPlayBtn: {fileID: 243426376}
+  backBtn: {fileID: 165512604}
 --- !u!1 &697390947
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,7 +3223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2061281492
 RectTransform:
   m_ObjectHideFlags: 0
