@@ -325,7 +325,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &377864023
 Transform:
   m_ObjectHideFlags: 0
@@ -356,10 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listOfPools:
   - type: 0
-    prefab: {fileID: 5727090491796327974, guid: 446167cdba3da4946b15f44cb75e5c48, type: 3}
     container: {fileID: 70490154}
-    amount: 10
-    objects: []
 --- !u!1 &483832821
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LoadingGO: {fileID: 75441067}
   MainMenuContainer: {fileID: 1768618101}
+  PoolManager: {fileID: 377864022}
 --- !u!4 &851050402
 Transform:
   m_ObjectHideFlags: 0

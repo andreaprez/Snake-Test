@@ -9,20 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ddb1a19a79c25c4ab4bf4c4c4e81471, type: 3}
-  m_Name: AssetsConfiguration
+  m_Script: {fileID: 11500000, guid: 8491c087e15ff694f97e4b41dbe517fd, type: 3}
+  m_Name: AssetBundlesConfiguration
   m_EditorClassIdentifier: 
+  GameConfigURL: https://drive.google.com/u/0/uc?id=1RdMq9I-LbOdU70mlW5iJvmVX3sQWG1g0&export=download
   TexturesURL: https://drive.google.com/u/0/uc?id=1lERPo2h9VG9S55OEOsaTjZW4BSnIWIM5&export=download
   SoundsURL: https://drive.google.com/u/0/uc?id=1MF5T87F5kQ9Lsu32vRZQ_lWMtO5Jo4uY&export=download
-  MainMenuPrefab: {fileID: 0}
-  FoodApplePrefab: {fileID: 0}
-  SnakeHeadPrefab: {fileID: 0}
-  SnakeBodyPrefab: {fileID: 0}
-  SoundPrefab: {fileID: 0}
-  GameplayBackgroundSprite: {fileID: 0}
-  AudioClips:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

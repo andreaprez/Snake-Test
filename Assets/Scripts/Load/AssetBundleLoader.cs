@@ -9,6 +9,7 @@ public class AssetBundleLoader : MonoBehaviour
 {
     [SerializeField] private GameObject LoadingGO;
     [SerializeField] private Transform MainMenuContainer;
+    [SerializeField] private GameObject PoolManager;
 
     private bool textureAssetsLoaded = false;
     private bool soundAssetsLoaded = false;
@@ -19,16 +20,20 @@ public class AssetBundleLoader : MonoBehaviour
         
         StartCoroutine(DownloadAssetBundle(AssetBundleType.Textures, HandleTextureAssets));
         StartCoroutine(DownloadAssetBundle(AssetBundleType.Sounds, HandleSoundAssets));
+        StartCoroutine(DownloadAssetBundle(AssetBundleType.GameConfig, HandleGameConfigAssets));
     }
 
     private IEnumerator DownloadAssetBundle(AssetBundleType bundleType, Action<List<UnityEngine.Object>> successCallback) {
         string url = "";
         switch (bundleType) {
             case AssetBundleType.Textures:
-                url = GameConfig.GetAssetsConfiguration().TexturesURL;
+                url = GameConfig.GetAssetBundlesConfiguration().TexturesURL;
                 break;
             case AssetBundleType.Sounds:
-                url = GameConfig.GetAssetsConfiguration().SoundsURL;
+                url = GameConfig.GetAssetBundlesConfiguration().SoundsURL;
+                break;
+            case AssetBundleType.GameConfig:
+                url = GameConfig.GetAssetBundlesConfiguration().GameConfigURL;
                 break;
         }
         
@@ -86,7 +91,12 @@ public class AssetBundleLoader : MonoBehaviour
     private void HandleSoundAssets(List<UnityEngine.Object> assets) {
         GameConfig.GetAssetsConfiguration().AudioClips = new List<AudioClip>();
         foreach (var asset in assets) {
-            GameConfig.GetAssetsConfiguration().AudioClips.Add((AudioClip)asset);
+            if (asset.name.Equals("SoundGO")) {
+                GameConfig.GetAssetsConfiguration().SoundPrefab = (GameObject)asset;
+            }
+            else {
+                GameConfig.GetAssetsConfiguration().AudioClips.Add((AudioClip)asset);
+            }
         }
         
         Debug.Log("[AssetBundles] Sounds asset bundle finished loading.");
@@ -97,16 +107,28 @@ public class AssetBundleLoader : MonoBehaviour
         }
     }
 
-    private void StartGame()
+    private void HandleGameConfigAssets(List<UnityEngine.Object> assets)
     {
+        foreach (var asset in assets)
+        {
+            var gameplayConfig = (GameplayConfiguration)asset;
+            if (gameplayConfig)
+            {
+                GameConfig.OverrideGameplayConfiguration(gameplayConfig);
+            }
+        }
+    }
+
+    private void StartGame() {
         Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
         LoadingGO.SetActive(false);
+        PoolManager.SetActive(true);
         Instantiate(GameConfig.GetAssetsConfiguration().MainMenuPrefab, MainMenuContainer);
     }
 
-    private enum AssetBundleType
-    {
+    private enum AssetBundleType {
         Textures,
-        Sounds
+        Sounds,
+        GameConfig
     }
 }

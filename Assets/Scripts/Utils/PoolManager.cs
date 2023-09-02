@@ -19,18 +19,18 @@ public class PoolManager : MonoBehaviour {
     }
 
     void FillPool(ObjectPool pool) {
-        for (int i = 0; i < pool.amount; i++) {
-            pool.Initialize();
-            var tmpInstance = Instantiate(pool.prefab, pool.container.transform);
+        pool.Initialize();
+        for (int i = 0; i < pool.GetAmount(); i++) {
+            var tmpInstance = Instantiate(pool.GetPrefab(), pool.container.transform);
             tmpInstance.SetActive(false);
             tmpInstance.transform.position = pool.container.transform.position;
-            pool.objects.Add(tmpInstance);
+            pool.GetObjects().Add(tmpInstance);
         }
     }
     
     public GameObject GetPoolObject(ObjectPoolType type) {
         ObjectPool pool = GetPoolByType(type);
-        List<GameObject> poolObjects = pool.objects;
+        List<GameObject> poolObjects = pool.GetObjects();
 
         if (poolObjects != null && poolObjects.Count > 0)
         {
@@ -71,8 +71,8 @@ public class PoolManager : MonoBehaviour {
             obj.transform.position = pool.container.transform.position;
             
             // Move the cleared object to the end of the pool to keep the pool organised.
-            pool.objects.Remove(obj);
-            pool.objects.Add(obj);
+            pool.GetObjects().Remove(obj);
+            pool.GetObjects().Add(obj);
         }
     }
 }
@@ -80,19 +80,29 @@ public class PoolManager : MonoBehaviour {
 [Serializable]
 public class ObjectPool {
     public ObjectPoolType type;
-    public GameObject prefab;
     public GameObject container;
-    public int amount;
+    
+    private GameObject prefab;
+    private int amount;
 
-    public List<GameObject> objects = new List<GameObject>();
+    private List<GameObject> objects = new List<GameObject>();
 
     public void Initialize() {
         switch (type) {
             case ObjectPoolType.Food:
                 prefab = GameConfig.GetAssetsConfiguration().FoodApplePrefab;
+                amount = GameConfig.GetGameplayConfiguration().FoodPoolAmount;
+                break;
+            case ObjectPoolType.Audio:
+                prefab = GameConfig.GetAssetsConfiguration().SoundPrefab;
+                amount = GameConfig.GetGameplayConfiguration().AudioPoolAmount;
                 break;
         }
     }
+
+    public GameObject GetPrefab() { return prefab; }
+    public int GetAmount() { return amount; }
+    public List<GameObject> GetObjects() { return objects; }
 }
 
 public enum ObjectPoolType

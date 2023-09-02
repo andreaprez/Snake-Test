@@ -29,7 +29,7 @@ public class GameHandler : MonoBehaviour {
 
         GameplayBackground.sprite = GameConfig.GetAssetsConfiguration().GameplayBackgroundSprite;
         
-        levelGrid = new LevelGrid(20, 20);
+        levelGrid = new LevelGrid(GameConfig.GetGameplayConfiguration().LevelWidth, GameConfig.GetGameplayConfiguration().LevelHeight);
 
         snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<Snake>();
         if (snake != null) {
