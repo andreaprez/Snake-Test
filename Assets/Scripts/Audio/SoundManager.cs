@@ -24,13 +24,15 @@ public static class SoundManager {
     }
     
     public static void PlaySound(Sound sound) {
-        var audioObj = PoolManager.instance.GetPoolObject(ObjectPoolType.Audio);
+        if (PoolManager.instance) {
+            var audioObj = PoolManager.instance.GetPoolObject(ObjectPoolType.Audio);
 
-        if (audioObj != null) {
-            AudioSource audioSource = audioObj.GetComponent<AudioSource>();
-            if (audioSource != null) {
-                audioObj.SetActive(true);
-                audioSource.PlayOneShot(GetAudioClip(sound));
+            if (audioObj != null) {
+                AudioSource audioSource = audioObj.GetComponent<AudioSource>();
+                if (audioSource != null) {
+                    audioObj.SetActive(true);
+                    audioSource.PlayOneShot(GetAudioClip(sound));
+                }
             }
         }
     }
