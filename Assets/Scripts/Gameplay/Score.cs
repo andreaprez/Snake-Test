@@ -47,9 +47,7 @@ public static class Score {
             PlayerPrefs.Save();
             if (OnHighscoreChanged != null) OnHighscoreChanged(null, EventArgs.Empty);
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
-
 }

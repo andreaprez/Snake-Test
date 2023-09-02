@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5655038687254857133}
   - component: {fileID: 2293225417911051999}
   m_Layer: 0
-  m_Name: Food
+  m_Name: FoodAppleGO
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2997367514115236170}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.55, y: 0.55, z: 0.55}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -571932810, guid: 5ed237dde8912d348a21660e8d796f80, type: 3}
+  m_Sprite: {fileID: -555144495, guid: 5ed237dde8912d348a21660e8d796f80, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

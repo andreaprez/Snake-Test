@@ -14,14 +14,12 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour {
 
-    private static GameHandler instance;
-
-    [SerializeField] private Snake snake;
-
+    [SerializeField] private SpriteRenderer GameplayBackground;
+    
+    private Snake snake;
     private LevelGrid levelGrid;
 
     private void Awake() {
-        instance = this;
         Score.InitializeStatic();
         Time.timeScale = 1f;
     }
@@ -29,10 +27,15 @@ public class GameHandler : MonoBehaviour {
     private void Start() {
         Debug.Log("GameHandler.Start");
 
+        GameplayBackground.sprite = GameConfig.GetAssetsConfiguration().GameplayBackgroundSprite;
+        
         levelGrid = new LevelGrid(20, 20);
 
-        snake.Setup(levelGrid);
-        levelGrid.Setup(snake);
+        snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<Snake>();
+        if (snake != null) {
+            snake.Setup(levelGrid);
+            levelGrid.Setup(snake);
+        }
     }
 
     private void Update() {

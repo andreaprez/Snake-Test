@@ -36,9 +36,9 @@ public static class SoundManager {
     }
 
     private static AudioClip GetAudioClip(Sound sound) {
-        foreach (GameAssets.SoundAudioClip soundAudioClip in GameAssets.i.soundAudioClipArray) {
-            if (soundAudioClip.sound == sound) {
-                return soundAudioClip.audioClip;
+        foreach (AudioClip soundAudioClip in GameConfig.GetAssetsConfiguration().AudioClips) {
+            if (soundAudioClip.name.Contains(sound.ToString())) {
+                return soundAudioClip;
             }
         }
         Debug.LogError("Sound " + sound + " not found!");

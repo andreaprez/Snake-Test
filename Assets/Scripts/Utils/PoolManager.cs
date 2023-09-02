@@ -20,6 +20,7 @@ public class PoolManager : MonoBehaviour {
 
     void FillPool(ObjectPool pool) {
         for (int i = 0; i < pool.amount; i++) {
+            pool.Initialize();
             var tmpInstance = Instantiate(pool.prefab, pool.container.transform);
             tmpInstance.SetActive(false);
             tmpInstance.transform.position = pool.container.transform.position;
@@ -77,14 +78,21 @@ public class PoolManager : MonoBehaviour {
 }
 
 [Serializable]
-public class ObjectPool
-{
+public class ObjectPool {
     public ObjectPoolType type;
     public GameObject prefab;
     public GameObject container;
     public int amount;
 
     public List<GameObject> objects = new List<GameObject>();
+
+    public void Initialize() {
+        switch (type) {
+            case ObjectPoolType.Food:
+                prefab = GameConfig.GetAssetsConfiguration().FoodApplePrefab;
+                break;
+        }
+    }
 }
 
 public enum ObjectPoolType

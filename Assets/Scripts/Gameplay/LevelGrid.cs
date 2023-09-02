@@ -47,9 +47,8 @@ public class LevelGrid {
             SpawnFood();
             Score.AddScore();
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public Vector2Int ValidateGridPosition(Vector2Int gridPosition) {
