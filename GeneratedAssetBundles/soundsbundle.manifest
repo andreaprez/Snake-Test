@@ -1,19 +1,26 @@
 ManifestFileVersion: 0
-CRC: 1627340909
+CRC: 3698206847
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 922f80af57a2158817f28e4d3842df88
+    Hash: e1f728985921216722a1a3940418354a
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+    Hash: a638b0fff6fdb7332354f89330650265
 HashAppended: 0
 ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 82
+  Script: {instanceID: 0}
 - Class: 83
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Sounds/SnakeDie.wav
+- Assets/Prefabs/SoundGO.prefab
 - Assets/Sounds/ButtonOver.wav
 - Assets/Sounds/ButtonClick.wav
 - Assets/Sounds/SnakeMove.wav

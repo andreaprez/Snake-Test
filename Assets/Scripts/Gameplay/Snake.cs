@@ -42,8 +42,8 @@ public class Snake : MonoBehaviour {
     }
 
     private void Awake() {
-        gridPosition = new Vector2Int(10, 10);
-        gridMoveTimerMax = .2f;
+        gridPosition = new Vector2Int(GameConfig.GetGameplayConfiguration().LevelWidth / 2, GameConfig.GetGameplayConfiguration().LevelHeight / 2);
+        gridMoveTimerMax = GameConfig.GetGameplayConfiguration().SnakeMovementTime;
         gridMoveTimer = gridMoveTimerMax;
         gridMoveDirection = Direction.Right;
 
