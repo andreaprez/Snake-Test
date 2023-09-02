@@ -31,24 +31,32 @@ public class LevelGrid {
         SpawnFood();
     }
 
-    private void SpawnFood() {
+    public void SpawnFood() {
         do {
             foodGridPosition = new Vector2Int(Random.Range(0, width), Random.Range(0, height));
         } while (snake.GetFullSnakeGridPositionList().IndexOf(foodGridPosition) != -1);
 
-        foodGameObject = PoolManager.instance.GetPoolObject(ObjectPoolType.Food);
-        foodGameObject.transform.position = new Vector3(foodGridPosition.x, foodGridPosition.y);
-        foodGameObject.SetActive(true);
+        if (PoolManager.instance) {
+            foodGameObject = PoolManager.instance.GetPoolObject(ObjectPoolType.Food);
+            foodGameObject.transform.position = new Vector3(foodGridPosition.x, foodGridPosition.y);
+            foodGameObject.SetActive(true);
+        }
     }
 
     public bool TrySnakeEatFood(Vector2Int snakeGridPosition) {
         if (snakeGridPosition == foodGridPosition) {
-            PoolManager.instance.ResetPoolObject(foodGameObject, ObjectPoolType.Food);
+            if (PoolManager.instance) {
+                PoolManager.instance.ResetPoolObject(foodGameObject, ObjectPoolType.Food);
+            }
             SpawnFood();
             Score.AddScore();
             return true;
         }
         return false;
+    }
+
+    public Vector2Int GetFoodGridPosition() {
+        return foodGridPosition;
     }
 
     public Vector2Int ValidateGridPosition(Vector2Int gridPosition) {
@@ -66,4 +74,5 @@ public class LevelGrid {
         }
         return gridPosition;
     }
+
 }

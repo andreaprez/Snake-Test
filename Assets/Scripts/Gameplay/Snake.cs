@@ -15,7 +15,7 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour {
 
-    private enum Direction {
+    public enum Direction {
         Left,
         Right,
         Up,
@@ -42,10 +42,10 @@ public class Snake : MonoBehaviour {
     }
 
     private void Awake() {
-        gridPosition = new Vector2Int(GameConfig.GetGameplayConfiguration().LevelWidth / 2, GameConfig.GetGameplayConfiguration().LevelHeight / 2);
+        SetGridPosition(new Vector2Int(GameConfig.GetGameplayConfiguration().LevelWidth / 2, GameConfig.GetGameplayConfiguration().LevelHeight / 2));
+        SetGridMoveDirection(Direction.Right);
         gridMoveTimerMax = GameConfig.GetGameplayConfiguration().SnakeMovementTime;
         gridMoveTimer = gridMoveTimerMax;
-        gridMoveDirection = Direction.Right;
 
         snakeMovePositionList = new List<SnakeMovePosition>();
         snakeBodySize = 0;
@@ -69,22 +69,22 @@ public class Snake : MonoBehaviour {
     private void HandleInput() {
         if (Input.GetKeyDown(KeyCode.UpArrow)) {
             if (gridMoveDirection != Direction.Down) {
-                gridMoveDirection = Direction.Up;
+                SetGridMoveDirection(Direction.Up);
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow)) {
             if (gridMoveDirection != Direction.Up) {
-                gridMoveDirection = Direction.Down;
+                SetGridMoveDirection(Direction.Down);
             }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow)) {
             if (gridMoveDirection != Direction.Right) {
-                gridMoveDirection = Direction.Left;
+                SetGridMoveDirection(Direction.Left);
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow)) {
             if (gridMoveDirection != Direction.Left) {
-                gridMoveDirection = Direction.Right;
+                SetGridMoveDirection(Direction.Right);
             }
         }
     }
@@ -93,7 +93,7 @@ public class Snake : MonoBehaviour {
         gridMoveTimer += Time.deltaTime;
         if (gridMoveTimer >= gridMoveTimerMax) {
             gridMoveTimer -= gridMoveTimerMax;
-
+            
             SoundManager.PlaySound(SoundManager.Sound.SnakeMove);
 
             SnakeMovePosition previousSnakeMovePosition = null;
@@ -104,18 +104,7 @@ public class Snake : MonoBehaviour {
             SnakeMovePosition snakeMovePosition = new SnakeMovePosition(previousSnakeMovePosition, gridPosition, gridMoveDirection);
             snakeMovePositionList.Insert(0, snakeMovePosition);
 
-            Vector2Int gridMoveDirectionVector;
-            switch (gridMoveDirection) {
-            default:
-            case Direction.Right:   gridMoveDirectionVector = new Vector2Int(+1, 0); break;
-            case Direction.Left:    gridMoveDirectionVector = new Vector2Int(-1, 0); break;
-            case Direction.Up:      gridMoveDirectionVector = new Vector2Int(0, +1); break;
-            case Direction.Down:    gridMoveDirectionVector = new Vector2Int(0, -1); break;
-            }
-
-            gridPosition += gridMoveDirectionVector;
-
-            gridPosition = levelGrid.ValidateGridPosition(gridPosition);
+            Vector2Int gridMoveDirectionVector = UpdateGridPosition();
 
             bool snakeAteFood = levelGrid.TrySnakeEatFood(gridPosition);
             if (snakeAteFood) {
@@ -133,7 +122,7 @@ public class Snake : MonoBehaviour {
 
             foreach (SnakeBodyPart snakeBodyPart in snakeBodyPartList) {
                 Vector2Int snakeBodyPartGridPosition = snakeBodyPart.GetGridPosition();
-                if (gridPosition == snakeBodyPartGridPosition) {
+                if (CheckSnakeCollision(snakeBodyPartGridPosition)) {
                     // Game Over!
                     //CMDebug.TextPopup("DEAD!", transform.position);
                     state = State.Dead;
@@ -141,12 +130,36 @@ public class Snake : MonoBehaviour {
                     SoundManager.PlaySound(SoundManager.Sound.SnakeDie);
                 }
             }
-
-            transform.position = new Vector3(gridPosition.x, gridPosition.y);
-            transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirectionVector) - 90);
+            Move(gridMoveDirectionVector);
         }
     }
 
+    public Vector2Int UpdateGridPosition() {
+        Vector2Int gridMoveDirectionVector;
+        
+        switch (gridMoveDirection) {
+            default:
+            case Direction.Right:   gridMoveDirectionVector = new Vector2Int(+1, 0); break;
+            case Direction.Left:    gridMoveDirectionVector = new Vector2Int(-1, 0); break;
+            case Direction.Up:      gridMoveDirectionVector = new Vector2Int(0, +1); break;
+            case Direction.Down:    gridMoveDirectionVector = new Vector2Int(0, -1); break;
+        }
+
+        gridPosition += gridMoveDirectionVector;
+        gridPosition = levelGrid.ValidateGridPosition(gridPosition);
+
+        return gridMoveDirectionVector;
+    }
+
+    public void Move(Vector2Int gridMoveDirectionVector) {
+        transform.position = new Vector3(gridPosition.x, gridPosition.y);
+        transform.eulerAngles = new Vector3(0, 0, GetAngleFromVector(gridMoveDirectionVector) - 90);
+    }
+
+    public bool CheckSnakeCollision(Vector2Int position) {
+        return gridPosition == position;
+    }
+    
     private void CreateSnakeBodyPart() {
         snakeBodyPartList.Add(new SnakeBodyPart(GameConfig.GetAssetsConfiguration().SnakeBodyPrefab));
     }
@@ -157,7 +170,6 @@ public class Snake : MonoBehaviour {
         }
     }
 
-
     private float GetAngleFromVector(Vector2Int dir) {
         float n = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         if (n < 0) n += 360;
@@ -166,6 +178,16 @@ public class Snake : MonoBehaviour {
 
     public Vector2Int GetGridPosition() {
         return gridPosition;
+    }
+
+    public void SetGridPosition(Vector2Int pos)
+    {
+        gridPosition = pos;
+    }
+    
+    public void SetGridMoveDirection(Direction direction)
+    {
+        gridMoveDirection = direction;
     }
 
     // Return the full list of positions occupied by the snake: Head + Body
