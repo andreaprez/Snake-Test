@@ -13,6 +13,7 @@ public class AssetBundleLoader : MonoBehaviour
 
     private bool textureAssetsLoaded = false;
     private bool soundAssetsLoaded = false;
+    private bool gameConfigAssetsLoaded = false;
     
     private void Awake() {
         Debug.Log("[AssetBundles] Loading asset bundles");
@@ -83,7 +84,7 @@ public class AssetBundleLoader : MonoBehaviour
         Debug.Log("[AssetBundles] Textures asset bundle finished loading.");
         textureAssetsLoaded = true;
 
-        if (soundAssetsLoaded) {
+        if (soundAssetsLoaded && gameConfigAssetsLoaded) {
             StartGame();            
         }
     }
@@ -102,7 +103,7 @@ public class AssetBundleLoader : MonoBehaviour
         Debug.Log("[AssetBundles] Sounds asset bundle finished loading.");
         soundAssetsLoaded = true;
         
-        if (textureAssetsLoaded) {
+        if (textureAssetsLoaded && gameConfigAssetsLoaded) {
             StartGame();            
         }
     }
@@ -116,6 +117,13 @@ public class AssetBundleLoader : MonoBehaviour
             {
                 GameConfig.OverrideGameplayConfiguration(gameplayConfig);
             }
+        }
+        
+        Debug.Log("[AssetBundles] GameConfig asset bundle finished loading.");
+        gameConfigAssetsLoaded = true;
+        
+        if (textureAssetsLoaded && soundAssetsLoaded) {
+            StartGame();            
         }
     }
 

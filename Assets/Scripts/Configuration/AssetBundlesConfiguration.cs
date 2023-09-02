@@ -4,7 +4,7 @@ using UnityEngine;
 public class AssetBundlesConfiguration : ScriptableObject
 {
     [Header("URLs")] 
-    public string GameConfigURL = "https://drive.google.com/u/0/uc?id=1RdMq9I-LbOdU70mlW5iJvmVX3sQWG1g0&export=download";
-    public string TexturesURL = "https://drive.google.com/u/0/uc?id=1lERPo2h9VG9S55OEOsaTjZW4BSnIWIM5&export=download";
-    public string SoundsURL = "https://drive.google.com/u/0/uc?id=1MF5T87F5kQ9Lsu32vRZQ_lWMtO5Jo4uY&export=download";
+    public string GameConfigURL = "https://drive.google.com/u/0/uc?id=13VxjhNRJ-n9HBQo4xjoeKM2bLykJTkLz&export=download";
+    public string TexturesURL = "https://drive.google.com/u/0/uc?id=1ksirfcflTCm90ZxKtstIeJyMThkG7fwY&export=download";
+    public string SoundsURL = "https://drive.google.com/u/0/uc?id=1O6EiMBgyGAE2BeYV6B3dpvKPp1k45GrA&export=download";
 }
