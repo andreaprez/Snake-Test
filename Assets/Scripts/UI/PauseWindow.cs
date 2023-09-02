@@ -17,14 +17,16 @@ public class PauseWindow : MonoBehaviour {
 
     private static PauseWindow instance;
 
+    [SerializeField] private RectTransform rectTransform;
+
     [SerializeField] private Button_UI resumeBtn;
     [SerializeField] private Button_UI mainMenuBtn;
 
     private void Awake() {
         instance = this;
 
-        transform.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-        transform.GetComponent<RectTransform>().sizeDelta = Vector2.zero;
+        rectTransform.anchoredPosition = Vector2.zero;
+        rectTransform.sizeDelta = Vector2.zero;
 
         resumeBtn.ClickFunc = () => GameHandler.ResumeGame();
         resumeBtn.AddButtonSounds();

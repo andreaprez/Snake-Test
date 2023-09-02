@@ -1021,6 +1021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea2397e071273d443a98d1148a75d4e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 914958681}
   resumeBtn: {fileID: 1888780374}
   mainMenuBtn: {fileID: 450021494}
 --- !u!1 &976504660
