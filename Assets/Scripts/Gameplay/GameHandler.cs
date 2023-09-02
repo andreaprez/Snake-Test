@@ -14,8 +14,9 @@ using UnityEngine;
 
 public class GameHandler : MonoBehaviour {
 
-    [SerializeField] private Snake snake;
-
+    [SerializeField] private SpriteRenderer GameplayBackground;
+    
+    private Snake snake;
     private LevelGrid levelGrid;
 
     private void Awake() {
@@ -26,6 +27,8 @@ public class GameHandler : MonoBehaviour {
     private void Start() {
         Debug.Log("GameHandler.Start");
 
+        GameplayBackground.sprite = GameConfig.GetAssetsConfiguration().GameplayBackgroundSprite;
+        
         levelGrid = new LevelGrid(20, 20);
 
         snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<Snake>();

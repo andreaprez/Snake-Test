@@ -69,6 +69,9 @@ public class AssetBundleLoader : MonoBehaviour
                 case "MainMenu":
                     GameConfig.GetAssetsConfiguration().MainMenuPrefab = (GameObject)asset;
                     break;
+                case "White_1x1":
+                    GameConfig.GetAssetsConfiguration().GameplayBackgroundSprite = (Sprite)asset;
+                    break;
             }
         }
         

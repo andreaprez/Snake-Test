@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Game Config/Assets Configuration")]
 public class AssetsConfiguration : ScriptableObject {
     [Header("AssetBundleURLs")] 
-    public string TexturesURL = "https://drive.google.com/u/0/uc?id=1Vi8GHislaiA1xfLOtiDB6my0rfOZI0AU&export=download";
+    public string TexturesURL = "https://drive.google.com/u/0/uc?id=16qrrsKkJRKuX8Jx6d3QWoDhQwgAmdWBb&export=download";
     public string SoundsURL = "https://drive.google.com/u/0/uc?id=1qEvwIJOLT18EG9lg50dFiwU0V4_G9Z9R&export=download";
 
     [Space]
@@ -15,6 +15,9 @@ public class AssetsConfiguration : ScriptableObject {
     public GameObject FoodApplePrefab;
     public GameObject SnakeHeadPrefab;
     public GameObject SnakeBodyPrefab;
+    
+    [Header("Sprites")]
+    public Sprite GameplayBackgroundSprite;
 
     [Header("AudioClips")]
     public List<AudioClip> AudioClips;

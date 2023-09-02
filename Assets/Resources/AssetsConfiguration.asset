@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddb1a19a79c25c4ab4bf4c4c4e81471, type: 3}
   m_Name: AssetsConfiguration
   m_EditorClassIdentifier: 
-  TexturesURL: https://drive.google.com/u/0/uc?id=1Vi8GHislaiA1xfLOtiDB6my0rfOZI0AU&export=download
+  TexturesURL: https://drive.google.com/u/0/uc?id=16qrrsKkJRKuX8Jx6d3QWoDhQwgAmdWBb&export=download
   SoundsURL: https://drive.google.com/u/0/uc?id=1qEvwIJOLT18EG9lg50dFiwU0V4_G9Z9R&export=download
   MainMenuPrefab: {fileID: 0}
   FoodApplePrefab: {fileID: 0}
   SnakeHeadPrefab: {fileID: 0}
   SnakeBodyPrefab: {fileID: 0}
+  GameplayBackgroundSprite: {fileID: 0}
   AudioClips:
   - {fileID: 0}
   - {fileID: 0}
