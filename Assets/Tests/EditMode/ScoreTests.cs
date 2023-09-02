@@ -8,7 +8,7 @@ public class ScoreTests
         Score.InitializeStatic();
         
         var previousScore = Score.GetScore();
-        Score.AddScore();
+        Score.AddScore(100);
         var newScore = Score.GetScore();
         
         Assert.True(newScore > previousScore);

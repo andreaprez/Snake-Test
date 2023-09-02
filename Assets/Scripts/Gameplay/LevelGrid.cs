@@ -15,7 +15,7 @@ using UnityEngine;
 public class LevelGrid {
 
     private Vector2Int foodGridPosition;
-    private GameObject foodGameObject;
+    private Food foodGameObject;
     private int width;
     private int height;
     private Snake snake;
@@ -37,19 +37,19 @@ public class LevelGrid {
         } while (snake.GetFullSnakeGridPositionList().IndexOf(foodGridPosition) != -1);
 
         if (PoolManager.instance) {
-            foodGameObject = PoolManager.instance.GetPoolObject(ObjectPoolType.Food);
-            foodGameObject.transform.position = new Vector3(foodGridPosition.x, foodGridPosition.y);
-            foodGameObject.SetActive(true);
+            foodGameObject = PoolManager.instance.GetPoolObject(ObjectPoolType.Food).GetComponent<Food>();
+            foodGameObject.gameObject.transform.position = new Vector3(foodGridPosition.x, foodGridPosition.y);
+            foodGameObject.gameObject.SetActive(true);
         }
     }
 
     public bool TrySnakeEatFood(Vector2Int snakeGridPosition) {
         if (snakeGridPosition == foodGridPosition) {
+            Score.AddScore(foodGameObject.GetScoreAmount());
             if (PoolManager.instance) {
-                PoolManager.instance.ResetPoolObject(foodGameObject, ObjectPoolType.Food);
+                PoolManager.instance.ResetPoolObject(foodGameObject.gameObject, ObjectPoolType.Food);
             }
             SpawnFood();
-            Score.AddScore();
             return true;
         }
         return false;
