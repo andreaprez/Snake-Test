@@ -16,7 +16,7 @@ public class GameHandler : MonoBehaviour {
 
     [SerializeField] private SpriteRenderer GameplayBackground;
     
-    private Snake snake;
+    private PlayerSnake snake;
     private LevelGrid levelGrid;
 
     private void Awake() {
@@ -31,7 +31,7 @@ public class GameHandler : MonoBehaviour {
         
         levelGrid = new LevelGrid(GameConfig.GetGameplayConfiguration().LevelWidth, GameConfig.GetGameplayConfiguration().LevelHeight);
 
-        snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<Snake>();
+        snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<PlayerSnake>();
         if (snake != null) {
             snake.Setup(levelGrid);
             levelGrid.Setup(snake);

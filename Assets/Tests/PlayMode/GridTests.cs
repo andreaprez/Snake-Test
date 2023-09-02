@@ -62,7 +62,7 @@ public class GridTests {
     [UnityTest]
     public IEnumerator GridEatFoodFromFoodCell() {
         var levelGrid = new LevelGrid(20, 20);
-        Snake snake = InitSnake(levelGrid);
+        PlayerSnake snake = InitSnake(levelGrid);
         levelGrid.Setup(snake);
         
         levelGrid.SpawnFood();
@@ -76,7 +76,7 @@ public class GridTests {
     [UnityTest]
     public IEnumerator GridEatFoodFromEmptyCell() {
         var levelGrid = new LevelGrid(20, 20);
-        Snake snake = InitSnake(levelGrid);
+        PlayerSnake snake = InitSnake(levelGrid);
         levelGrid.Setup(snake);
         
         levelGrid.SpawnFood();
@@ -95,7 +95,7 @@ public class GridTests {
     [UnityTest]
     public IEnumerator SnakeCheckCollisionTrue() {
         var levelGrid = new LevelGrid(20, 20);
-        Snake snake = InitSnake(levelGrid);
+        PlayerSnake snake = InitSnake(levelGrid);
         
         snake.SetGridPosition(new Vector2Int(10, 10));
 
@@ -106,7 +106,7 @@ public class GridTests {
     [UnityTest]
     public IEnumerator SnakeCheckCollisionFalse() {
         var levelGrid = new LevelGrid(20, 20);
-        Snake snake = InitSnake(levelGrid);
+        PlayerSnake snake = InitSnake(levelGrid);
         
         snake.SetGridPosition(new Vector2Int(10, 10));
 
@@ -114,9 +114,9 @@ public class GridTests {
         yield return null;
     }
 
-    private Snake InitSnake(LevelGrid levelGrid) {
+    private PlayerSnake InitSnake(LevelGrid levelGrid) {
         var gameObject = new GameObject();
-        var snake = gameObject.AddComponent<Snake>();
+        var snake = gameObject.AddComponent<PlayerSnake>();
         snake.Setup(levelGrid);
         return snake;
     }

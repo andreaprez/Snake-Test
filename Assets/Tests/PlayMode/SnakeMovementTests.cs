@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 public class SnakeMovementTests {
     [UnityTest]
     public IEnumerator SnakeMovementUp() {
-        Snake snake = InitSnake();
+        PlayerSnake snake = InitSnake();
         
         var initialPos = snake.transform.position;
         MoveSnake(snake, Snake.Direction.Up);
@@ -18,7 +18,7 @@ public class SnakeMovementTests {
     
     [UnityTest]
     public IEnumerator SnakeMovementDown() {
-        Snake snake = InitSnake();
+        PlayerSnake snake = InitSnake();
         
         var initialPos = snake.transform.position;
         MoveSnake(snake, Snake.Direction.Down);
@@ -30,7 +30,7 @@ public class SnakeMovementTests {
 
     [UnityTest]
     public IEnumerator SnakeMovementRight() {
-        Snake snake = InitSnake();
+        PlayerSnake snake = InitSnake();
         
         var initialPos = snake.transform.position;
         MoveSnake(snake, Snake.Direction.Right);
@@ -42,7 +42,7 @@ public class SnakeMovementTests {
     
     [UnityTest]
     public IEnumerator SnakeMovementLeft() {
-        Snake snake = InitSnake();
+        PlayerSnake snake = InitSnake();
         
         var initialPos = snake.transform.position;
         MoveSnake(snake, Snake.Direction.Left);
@@ -53,9 +53,9 @@ public class SnakeMovementTests {
     }
 
     
-    private Snake InitSnake() {
+    private PlayerSnake InitSnake() {
         var gameObject = new GameObject();
-        var snake = gameObject.AddComponent<Snake>();
+        var snake = gameObject.AddComponent<PlayerSnake>();
         snake.Setup(new LevelGrid(20, 20));
         snake.SetGridPosition(new Vector2Int(10, 10));
         snake.transform.position = new Vector3(snake.GetGridPosition().x, snake.GetGridPosition().y);
