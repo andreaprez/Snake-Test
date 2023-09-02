@@ -37,8 +37,6 @@ public class Snake : MonoBehaviour {
     private List<SnakeMovePosition> snakeMovePositionList;
     private List<SnakeBodyPart> snakeBodyPartList;
 
-    [SerializeField] private SpriteRenderer bodyPartPrefab;
-
     public void Setup(LevelGrid levelGrid) {
         this.levelGrid = levelGrid;
     }
@@ -150,7 +148,7 @@ public class Snake : MonoBehaviour {
     }
 
     private void CreateSnakeBodyPart() {
-        snakeBodyPartList.Add(new SnakeBodyPart(bodyPartPrefab));
+        snakeBodyPartList.Add(new SnakeBodyPart(GameConfig.GetAssetsConfiguration().SnakeBodyPrefab));
     }
 
     private void UpdateSnakeBodyParts() {
@@ -190,9 +188,8 @@ public class Snake : MonoBehaviour {
         private SnakeMovePosition snakeMovePosition;
         private Transform transform;
 
-        public SnakeBodyPart(SpriteRenderer prefab)
-        {
-            SpriteRenderer instance = Instantiate(prefab);
+        public SnakeBodyPart(GameObject prefab) {
+            SpriteRenderer instance = Instantiate(prefab).GetComponent<SpriteRenderer>();
             instance.sortingOrder = 1;
             transform = instance.gameObject.transform;
         }

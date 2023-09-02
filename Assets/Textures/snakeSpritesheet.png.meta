@@ -44,10 +44,10 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 180
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -76,54 +76,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Server
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -131,19 +83,19 @@ TextureImporter:
       name: FoodApple
       rect:
         serializedVersion: 2
-        x: 336
-        y: 82
-        width: 170
-        height: 174
+        x: 170
+        y: 336
+        width: 186
+        height: 176
       alignment: 9
-      pivot: {x: 0.49411765, y: 0.51724136}
+      pivot: {x: 0.45698926, y: 0.51704544}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5bb33b3c1406ff498a6df0cebe5f971
-      internalID: -571932810
+      spriteID: ac7f7935dcf73994bb6d572a9c69a47a
+      internalID: -555144495
       vertices: []
       indices: 
       edges: []
@@ -152,19 +104,19 @@ TextureImporter:
       name: SnakeBody
       rect:
         serializedVersion: 2
-        x: 175
-        y: 64
-        width: 161
-        height: 192
+        x: 0
+        y: 310
+        width: 170
+        height: 202
       alignment: 9
-      pivot: {x: 0.49689442, y: 0.5416667}
+      pivot: {x: 0.5235294, y: 0.55445546}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55a2986cd127e1c4b8655cf923660d7d
-      internalID: 1161718873
+      spriteID: d9c44adc172dd44429d873618fedd5c5
+      internalID: 56276298
       vertices: []
       indices: 
       edges: []
@@ -174,18 +126,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
-        width: 175
-        height: 192
+        y: 112
+        width: 184
+        height: 198
       alignment: 9
-      pivot: {x: 0.50285715, y: 0.5416667}
+      pivot: {x: 0.49456522, y: 0.53535354}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e98d55ecd6809ac4394b770a8daa8d4f
-      internalID: -456384364
+      spriteID: 15be593aae4d8b04690fca9903274bfd
+      internalID: -1026720055
       vertices: []
       indices: 
       edges: []
@@ -194,8 +146,8 @@ TextureImporter:
       name: White_1x1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 63
+        x: 170
+        y: 335
         width: 1
         height: 1
       alignment: 0
@@ -205,8 +157,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 79d148a606f92c04981bb8b735874d9a
-      internalID: -1105721251
+      spriteID: 44a3b6834b1abf44ea8e54f9bdf5e0d7
+      internalID: -1911513523
       vertices: []
       indices: 
       edges: []
@@ -214,7 +166,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 6408e7463e8230e49af9d154af1689d9
+    spriteID: 6517b76d2c18e6d438f6915f1c0badf5
     internalID: 0
     vertices: []
     indices: 
@@ -222,13 +174,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      FoodApple: -571932810
-      SnakeBody: 1161718873
-      White_1x1: -1105721251
-      SnakeHead: -456384364
+      FoodApple: -555144495
+      SnakeBody: 56276298
+      White_1x1: -1911513523
+      SnakeHead: -1026720055
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 
-  assetBundleName: 
+  assetBundleName: uibundle
   assetBundleVariant: 

@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 1627340909
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 922f80af57a2158817f28e4d3842df88
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Sounds/SnakeDie.wav
+- Assets/Sounds/ButtonOver.wav
+- Assets/Sounds/ButtonClick.wav
+- Assets/Sounds/SnakeMove.wav
+- Assets/Sounds/SnakeEat.wav
+Dependencies: []
