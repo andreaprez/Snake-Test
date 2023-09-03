@@ -7,8 +7,6 @@ public class AssetsConfiguration : ScriptableObject {
     [Header("No need to set these references.")]
     [Space]
     
-    public bool Initialized = false;
-    
     [Header("Prefabs")]
     public GameObject MainMenuPrefab;
     public GameObject FoodApplePrefab;

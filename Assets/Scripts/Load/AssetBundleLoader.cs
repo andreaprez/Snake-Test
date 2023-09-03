@@ -15,8 +15,13 @@ public class AssetBundleLoader : MonoBehaviour
     private bool soundAssetsLoaded = false;
     private bool gameConfigAssetsLoaded = false;
     
+    private static bool initialized = false;
+    
     private void Awake() {
-        if (!GameConfig.GetAssetsConfiguration().Initialized) {
+        if (initialized) {
+            StartGame();
+        }
+        else {
             Debug.Log("[AssetBundles] Loading asset bundles");
             LoadingGO.SetActive(true);
 
@@ -128,7 +133,7 @@ public class AssetBundleLoader : MonoBehaviour
 
     private void StartGame() {
         Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
-        GameConfig.GetAssetsConfiguration().Initialized = true;
+        initialized = true;
         
         LoadingGO.SetActive(false);
         PoolManager.SetActive(true);
