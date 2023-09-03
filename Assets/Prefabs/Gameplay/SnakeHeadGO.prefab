@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2497220811261672351}
   - component: {fileID: 2497220811261672320}
-  - component: {fileID: 2497220811261672350}
+  - component: {fileID: 5003604274530714426}
   m_Layer: 0
   m_Name: SnakeHeadGO
   m_TagString: Untagged
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2497220811261672350
+--- !u!114 &5003604274530714426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,8 +94,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2497220811261672321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecfc34c1e2cad5940b5fdb55554f1850, type: 3}
+  m_Script: {fileID: 11500000, guid: af03d691335a1444891c4eba73471f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 2497220811261672320}
-  bodyPartPrefab: {fileID: 0}

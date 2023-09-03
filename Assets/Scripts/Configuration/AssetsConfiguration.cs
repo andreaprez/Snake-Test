@@ -5,6 +5,7 @@ using UnityEngine;
 public class AssetsConfiguration : ScriptableObject {
     [Header("Everything in this file is set from the asset bundles when the game starts.")]
     [Header("No need to set these references.")]
+    [Space]
     
     [Header("Prefabs")]
     public GameObject MainMenuPrefab;
@@ -18,5 +19,6 @@ public class AssetsConfiguration : ScriptableObject {
 
     [Header("AudioClips")]
     public List<AudioClip> AudioClips;
+
 }
     

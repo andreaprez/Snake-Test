@@ -28,8 +28,8 @@ public static class Score {
         return score;
     }
 
-    public static void AddScore() {
-        score += 100;
+    public static void AddScore(int amount) {
+        score += amount;
     }
 
     public static int GetHighscore() {

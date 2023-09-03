@@ -10,6 +10,9 @@ public class GameplayConfiguration : ScriptableObject {
     [Header("Snake")]
     public float SnakeMovementTime = .2f;
     
+    [Header("Food")]
+    public int FoodAppleScoreAmount = 100;
+    
     [Header("PoolManager")]
     public int AudioPoolAmount = 10;
     public int FoodPoolAmount = 5;

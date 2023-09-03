@@ -15,13 +15,20 @@ public class AssetBundleLoader : MonoBehaviour
     private bool soundAssetsLoaded = false;
     private bool gameConfigAssetsLoaded = false;
     
+    private static bool initialized = false;
+    
     private void Awake() {
-        Debug.Log("[AssetBundles] Loading asset bundles");
-        LoadingGO.SetActive(true);
-        
-        StartCoroutine(DownloadAssetBundle(AssetBundleType.Textures, HandleTextureAssets));
-        StartCoroutine(DownloadAssetBundle(AssetBundleType.Sounds, HandleSoundAssets));
-        StartCoroutine(DownloadAssetBundle(AssetBundleType.GameConfig, HandleGameConfigAssets));
+        if (initialized) {
+            StartGame();
+        }
+        else {
+            Debug.Log("[AssetBundles] Loading asset bundles");
+            LoadingGO.SetActive(true);
+
+            StartCoroutine(DownloadAssetBundle(AssetBundleType.Textures, HandleTextureAssets));
+            StartCoroutine(DownloadAssetBundle(AssetBundleType.Sounds, HandleSoundAssets));
+            StartCoroutine(DownloadAssetBundle(AssetBundleType.GameConfig, HandleGameConfigAssets));
+        }
     }
 
     private IEnumerator DownloadAssetBundle(AssetBundleType bundleType, Action<List<UnityEngine.Object>> successCallback) {
@@ -108,13 +115,10 @@ public class AssetBundleLoader : MonoBehaviour
         }
     }
 
-    private void HandleGameConfigAssets(List<UnityEngine.Object> assets)
-    {
-        foreach (var asset in assets)
-        {
+    private void HandleGameConfigAssets(List<UnityEngine.Object> assets) {
+        foreach (var asset in assets) {
             var gameplayConfig = (GameplayConfiguration)asset;
-            if (gameplayConfig)
-            {
+            if (gameplayConfig) {
                 GameConfig.OverrideGameplayConfiguration(gameplayConfig);
             }
         }
@@ -129,6 +133,8 @@ public class AssetBundleLoader : MonoBehaviour
 
     private void StartGame() {
         Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
+        initialized = true;
+        
         LoadingGO.SetActive(false);
         PoolManager.SetActive(true);
         Instantiate(GameConfig.GetAssetsConfiguration().MainMenuPrefab, MainMenuContainer);

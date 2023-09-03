@@ -15,5 +15,6 @@ MonoBehaviour:
   LevelWidth: 20
   LevelHeight: 20
   SnakeMovementTime: 0.2
+  FoodAppleScoreAmount: 100
   AudioPoolAmount: 10
   FoodPoolAmount: 5
