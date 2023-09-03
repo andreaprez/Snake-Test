@@ -92,6 +92,7 @@ public class AssetBundleLoader : MonoBehaviour
         textureAssetsLoaded = true;
 
         if (soundAssetsLoaded && gameConfigAssetsLoaded) {
+            Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
             StartGame();            
         }
     }
@@ -111,6 +112,7 @@ public class AssetBundleLoader : MonoBehaviour
         soundAssetsLoaded = true;
         
         if (textureAssetsLoaded && gameConfigAssetsLoaded) {
+            Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
             StartGame();            
         }
     }
@@ -127,12 +129,12 @@ public class AssetBundleLoader : MonoBehaviour
         gameConfigAssetsLoaded = true;
         
         if (textureAssetsLoaded && soundAssetsLoaded) {
+            Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
             StartGame();            
         }
     }
 
     private void StartGame() {
-        Debug.Log("[AssetBundles] Finished loading all asset bundles. Starting game.");
         initialized = true;
         
         LoadingGO.SetActive(false);

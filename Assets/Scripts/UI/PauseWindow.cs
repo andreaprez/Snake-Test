@@ -10,6 +10,7 @@
     --------------------------------------------------
  */
 
+using System;
 using UnityEngine;
 using CodeMonkey.Utils;
 
@@ -22,13 +23,17 @@ public class PauseWindow : MonoBehaviour {
     [SerializeField] private Button_UI resumeBtn;
     [SerializeField] private Button_UI mainMenuBtn;
 
+    public static Action ResumeGame;
+    
     private void Awake() {
         instance = this;
+        
+        ResumeGame = null;
 
         rectTransform.anchoredPosition = Vector2.zero;
         rectTransform.sizeDelta = Vector2.zero;
 
-        resumeBtn.ClickFunc = () => GameHandler.ResumeGame();
+        resumeBtn.ClickFunc = () => ResumeGame?.Invoke();
         resumeBtn.AddButtonSounds();
 
         mainMenuBtn.ClickFunc = () => Loader.Load(Loader.Scene.MainMenu);

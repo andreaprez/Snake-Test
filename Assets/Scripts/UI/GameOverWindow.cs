@@ -26,27 +26,25 @@ public class GameOverWindow : MonoBehaviour {
     private void Awake() {
         instance = this;
 
-        retryBtn.ClickFunc = () => { 
-            Loader.Load(Loader.Scene.GameScene);
-        };
+        retryBtn.ClickFunc = () => Loader.Load(Loader.Scene.GameScene);
 
         Hide();
     }
 
-    private void Show(bool isNewHighscore) {
+    private void Show(bool isNewHighscore, int score, int highscore) {
         gameObject.SetActive(true);
 
         newHighscoreText.gameObject.SetActive(isNewHighscore);
 
-        scoreText.text = Score.GetScore().ToString();
-        highscoreText.text = "HIGHSCORE " + Score.GetHighscore();
+        scoreText.text = score.ToString();
+        highscoreText.text = "HIGHSCORE " + highscore.ToString();
     }
 
     private void Hide() {
         gameObject.SetActive(false);
     }
 
-    public static void ShowStatic(bool isNewHighscore) {
-        instance.Show(isNewHighscore);
+    public static void ShowStatic(bool isNewHighscore, int score, int highscore) {
+        instance.Show(isNewHighscore, score, highscore);
     }
 }

@@ -10,7 +10,6 @@
     --------------------------------------------------
  */
 
-using System;
 using UnityEngine;
 
 public class GameHandler : MonoBehaviour {
@@ -23,6 +22,14 @@ public class GameHandler : MonoBehaviour {
 
     private void Awake() {
         Score.InitializeStatic();
+        ScoreWindow.UpdateScoreStatic(Score.GetScore());
+        ScoreWindow.UpdateHighscoreStatic(Score.GetHighscore());
+        Score.OnScoreChanged += ScoreWindow.UpdateScoreStatic;
+        Score.OnHighscoreChanged += ScoreWindow.UpdateHighscoreStatic;
+        
+        playerInput = new PlayerInput();
+        playerInput.Enable();
+        
         Time.timeScale = 1f;
     }
 
@@ -30,17 +37,16 @@ public class GameHandler : MonoBehaviour {
         Debug.Log("GameHandler.Start");
 
         GameplayBackground.sprite = GameConfig.GetAssetsConfiguration().GameplayBackgroundSprite;
-        
-        levelGrid = new LevelGrid(GameConfig.GetGameplayConfiguration().LevelWidth, GameConfig.GetGameplayConfiguration().LevelHeight);
 
-        playerInput = new PlayerInput();
-        playerInput.Enable();
+        levelGrid = new LevelGrid(GameConfig.GetGameplayConfiguration().LevelWidth, GameConfig.GetGameplayConfiguration().LevelHeight);
         
         snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<PlayerSnake>();
         if (snake != null) {
             snake.Setup(levelGrid, playerInput);
             levelGrid.Setup(snake);
         }
+
+        PauseWindow.ResumeGame += ResumeGame;
     }
 
     private void Update() {
@@ -55,7 +61,7 @@ public class GameHandler : MonoBehaviour {
 
     public static void SnakeDied() {
         bool isNewHighscore = Score.TrySetNewHighscore();
-        GameOverWindow.ShowStatic(isNewHighscore);
+        GameOverWindow.ShowStatic(isNewHighscore, Score.GetScore(), Score.GetHighscore());
         ScoreWindow.HideStatic();
     }
 
@@ -73,8 +79,11 @@ public class GameHandler : MonoBehaviour {
         return Time.timeScale == 0f;
     }
 
-    private void OnDisable()
-    {
+    private void OnDisable() {
         playerInput.Disable();
+    }
+
+    private void OnDestroy() {
+        PauseWindow.ResumeGame = null;
     }
 }

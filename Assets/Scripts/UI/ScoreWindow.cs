@@ -24,22 +24,22 @@ public class ScoreWindow : MonoBehaviour {
         instance = this;
     }
 
-    private void Start() {
-        Score.OnHighscoreChanged += Score_OnHighscoreChanged;
-        UpdateHighscore();
+    private void UpdateScore(int score) {
+        scoreText.text = score.ToString();
     }
-
-    private void Score_OnHighscoreChanged(object sender, System.EventArgs e) {
-        UpdateHighscore();
-    }
-
-    private void Update() {
-        scoreText.text = Score.GetScore().ToString();
-    }
-
-    private void UpdateHighscore() {
-        int highscore = Score.GetHighscore();
+    
+    private void UpdateHighscore(int highscore) {
         highscoreText.text = "HIGHSCORE\n" + highscore.ToString();
+    }
+    
+    public static void UpdateScoreStatic(int score)
+    {
+        instance.UpdateScore(score);
+    }
+    
+    public static void UpdateHighscoreStatic(int highscore)
+    {
+        instance.UpdateHighscore(highscore);
     }
 
     public static void HideStatic() {

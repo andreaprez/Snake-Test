@@ -104,6 +104,7 @@ public class Snake : MonoBehaviour {
                     Die();
                 }
             }
+            
             Move(gridMoveDirectionVector);
         }
     }

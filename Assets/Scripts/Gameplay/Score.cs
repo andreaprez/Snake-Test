@@ -15,11 +15,13 @@ using UnityEngine;
 
 public static class Score {
 
-    public static event EventHandler OnHighscoreChanged;
+    public static Action<int> OnScoreChanged;
+    public static Action<int> OnHighscoreChanged;
 
     private static int score;
 
     public static void InitializeStatic() {
+        OnScoreChanged = null;
         OnHighscoreChanged = null;
         score = 0;
     }
@@ -30,6 +32,7 @@ public static class Score {
 
     public static void AddScore(int amount) {
         score += amount;
+        OnScoreChanged?.Invoke(score);
     }
 
     public static int GetHighscore() {
@@ -45,7 +48,7 @@ public static class Score {
         if (score > highscore) {
             PlayerPrefs.SetInt("highscore", score);
             PlayerPrefs.Save();
-            if (OnHighscoreChanged != null) OnHighscoreChanged(null, EventArgs.Empty);
+            OnHighscoreChanged?.Invoke(highscore);
             return true;
         }
         return false;
