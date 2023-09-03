@@ -10,12 +10,14 @@
     --------------------------------------------------
  */
 
+using System;
 using UnityEngine;
 
 public class GameHandler : MonoBehaviour {
 
     [SerializeField] private SpriteRenderer GameplayBackground;
     
+    private PlayerInput playerInput;
     private PlayerSnake snake;
     private LevelGrid levelGrid;
 
@@ -31,19 +33,22 @@ public class GameHandler : MonoBehaviour {
         
         levelGrid = new LevelGrid(GameConfig.GetGameplayConfiguration().LevelWidth, GameConfig.GetGameplayConfiguration().LevelHeight);
 
+        playerInput = new PlayerInput();
+        playerInput.Enable();
+        
         snake = Instantiate(GameConfig.GetAssetsConfiguration().SnakeHeadPrefab).GetComponent<PlayerSnake>();
         if (snake != null) {
-            snake.Setup(levelGrid);
+            snake.Setup(levelGrid, playerInput);
             levelGrid.Setup(snake);
         }
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (playerInput.Snake.Pause.triggered) {
             if (IsGamePaused()) {
-                GameHandler.ResumeGame();
+                ResumeGame();
             } else {
-                GameHandler.PauseGame();
+                PauseGame();
             }
         }
     }
@@ -66,5 +71,10 @@ public class GameHandler : MonoBehaviour {
 
     public static bool IsGamePaused() {
         return Time.timeScale == 0f;
+    }
+
+    private void OnDisable()
+    {
+        playerInput.Disable();
     }
 }
