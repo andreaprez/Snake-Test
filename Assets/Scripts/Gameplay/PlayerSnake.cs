@@ -1,14 +1,22 @@
 using UnityEngine;
 
 public class PlayerSnake : Snake {
+
+    private PlayerInput playerInput;
+    
     protected override void Init() {
         SetGridPosition(new Vector2Int(GameConfig.GetGameplayConfiguration().LevelWidth / 2, GameConfig.GetGameplayConfiguration().LevelHeight / 2));
         SetGridMoveDirection(Direction.Right);
         gridMoveTimerMax = GameConfig.GetGameplayConfiguration().SnakeMovementTime;
-        
+
         base.Init();
     }
     
+    public void Setup(LevelGrid levelGrid, PlayerInput playerInput) {
+        base.Setup(levelGrid);
+        this.playerInput = playerInput;
+    }
+
     protected override void Update() {
         switch (state) {
             case State.Alive:
@@ -21,30 +29,31 @@ public class PlayerSnake : Snake {
         base.Update();
     }
 
-    protected override void Die()
-    {
+    protected override void Die() {
         base.Die();
         SoundManager.PlaySound(SoundManager.Sound.SnakeDie);
         GameHandler.SnakeDied();
     }
     
     private void HandleInput() {
-        if (Input.GetKeyDown(KeyCode.UpArrow)) {
+        Vector2 moveInputVector = playerInput.Snake.Move.ReadValue<Vector2>();
+        
+        if (moveInputVector.y > 0) {
             if (gridMoveDirection != Direction.Down) {
                 SetGridMoveDirection(Direction.Up);
             }
-        }
-        if (Input.GetKeyDown(KeyCode.DownArrow)) {
+        } 
+        else if (moveInputVector.y < 0) {
             if (gridMoveDirection != Direction.Up) {
                 SetGridMoveDirection(Direction.Down);
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow)) {
+        if (moveInputVector.x < 0) {
             if (gridMoveDirection != Direction.Right) {
                 SetGridMoveDirection(Direction.Left);
             }
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)) {
+        else if (moveInputVector.x > 0) {
             if (gridMoveDirection != Direction.Left) {
                 SetGridMoveDirection(Direction.Right);
             }

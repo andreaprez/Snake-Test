@@ -12,8 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ddb1a19a79c25c4ab4bf4c4c4e81471, type: 3}
   m_Name: AssetsConfiguration
   m_EditorClassIdentifier: 
-  TexturesURL: https://drive.google.com/u/0/uc?id=1lERPo2h9VG9S55OEOsaTjZW4BSnIWIM5&export=download
-  SoundsURL: https://drive.google.com/u/0/uc?id=1MF5T87F5kQ9Lsu32vRZQ_lWMtO5Jo4uY&export=download
   MainMenuPrefab: {fileID: 0}
   FoodApplePrefab: {fileID: 0}
   SnakeHeadPrefab: {fileID: 0}

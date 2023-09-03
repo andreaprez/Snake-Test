@@ -1,13 +1,7 @@
 {
-    "name": "Gameplay",
+    "name": "Input",
     "rootNamespace": "",
     "references": [
-        "GUID:77d2810d4bf60f04d9744c9dbe104d4e",
-        "GUID:755b86b245b236d499a2f5644d4ef9c1",
-        "GUID:54d71ff029e322348bc0de53d96a777d",
-        "GUID:ccbc7e2aeb99d684194c13b3efda86f5",
-        "GUID:c2f7e79a9810e4c4ca2bbf1b32023c0e",
-        "GUID:6c382b05a83518d4bb1f6c4994cd767f",
         "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
